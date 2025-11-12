@@ -19,7 +19,6 @@
       overflow: hidden;
     }
 
-    /* Canvas kembang api */
     canvas {
       position: fixed;
       top: 0;
@@ -27,10 +26,7 @@
       width: 100%;
       height: 100%;
       z-index: 0;
-      /* di belakang tombol */
     }
-
-    /* Tombol umum */
 
     .btn {
       display: flex;
@@ -50,7 +46,6 @@
       cursor: pointer;
       position: relative;
       z-index: 2;
-      /* tombol di atas canvas */
     }
 
     .btn:hover {
@@ -62,16 +57,16 @@
       transform: scale(0.97);
     }
 
-    /* Container tombol navigasi */
     .nav-buttons {
       display: flex;
-      grid-template-columns: repeat(2, 1fr);
       gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
       z-index: 2;
       position: relative;
+      padding: 20px;
     }
 
-    /* Tombol kembali pojok kiri */
     .back-button {
       position: fixed;
       top: 20px;
@@ -84,7 +79,6 @@
       z-index: 2;
     }
 
-    /* Popup background */
     .popup {
       display: none;
       position: fixed;
@@ -99,7 +93,6 @@
       align-items: center;
     }
 
-    /* Isi popup */
     .popup-content {
       background: white;
       padding: 30px;
@@ -140,7 +133,6 @@
       background: #e60073;
     }
 
-    /* Animasi popup */
     @keyframes fadeIn {
       from {
         transform: scale(0.7);
@@ -152,31 +144,7 @@
         opacity: 1;
       }
     }
-  </style>
-</head>
 
-<body>
-  <!-- Canvas untuk kembang api -->
-  <canvas id="fireworks"></canvas>
-
-  <!-- Container tombol navigasi -->
-  <div class="nav-buttons">
-    <a href="halamanfoto.html" class="gift-btn">
-      <img src="kado.png" alt="Foto">
-      <span class="label-box">Foto</span>
-    </a>
-
-    <div class="lock-btn" onclick="bukaPopup()">
-    <img src="img/img.png" alt="Kunci" class="lock-img">
-  </div>
-
-    <a href="halamanvidio.html" class="gift-btn">
-      <img src="kado.png" alt="Vidio">
-      <span class="label-box">Vidio</span>
-    </a>
-  </div>
-
-  <style>
     .gift-btn {
       display: flex;
       flex-direction: column;
@@ -200,7 +168,6 @@
       transform: scale(1.1);
     }
 
-    /* Tambahan kotak untuk teks di bawah gambar */
     .label-box {
       background: rgba(255, 77, 166, 0.1);
       border: 2px solid #ff4da6;
@@ -216,44 +183,115 @@
       color: white;
       transform: scale(1.05);
     }
-  </style>
 
-
-  <style>
-    .gift-btn {
+    .lock-btn {
+      cursor: pointer;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      color: #ff4da6;
-      font-weight: bold;
-      font-size: 16px;
-      transition: transform 0.3s;
     }
 
-    .gift-btn img {
-      width: 120px;
-      /* atur ukuran kado */
+    .lock-img {
+      width: 100px;
       height: auto;
-      margin-bottom: 8px;
       transition: transform 0.3s;
     }
 
-    .gift-btn:hover img {
+    .lock-btn:hover .lock-img {
       transform: scale(1.1);
     }
 
-    .gift-btn span {
-      margin-top: 5px;
+    /* 🔹 MEDIA QUERY UNTUK RESPONSIF 🔹 */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .nav-buttons {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .gift-btn img {
+        width: 90px;
+      }
+
+      .label-box {
+        font-size: 14px;
+        padding: 5px 10px;
+      }
+
+      .popup-content {
+        width: 80%;
+        padding: 20px;
+      }
+
+      .popup-content h2 {
+        font-size: 16px;
+      }
+
+      .popup-content input {
+        font-size: 14px;
+        width: 90%;
+      }
+
+      .back-button {
+        font-size: 12px;
+        padding: 8px 14px;
+      }
+
+      .lock-img {
+        width: 80px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gift-btn img {
+        width: 70px;
+      }
+
+      .label-box {
+        font-size: 12px;
+        padding: 4px 8px;
+      }
+
+      .popup-content h2 {
+        font-size: 14px;
+      }
+
+      .popup-content button {
+        padding: 8px 16px;
+        font-size: 14px;
+      }
     }
   </style>
+</head>
 
+<body>
+  <canvas id="fireworks"></canvas>
 
-  <!-- Tombol Kembali -->
+  <div class="nav-buttons">
+    <a href="halamanfoto.html" class="gift-btn">
+      <img src="kado.png" alt="Foto">
+      <span class="label-box">Foto</span>
+    </a>
+
+    <div class="lock-btn" onclick="bukaPopup()">
+      <img src="img/img.png" alt="Kunci" class="lock-img">
+    </div>
+
+    <a href="halamanvidio.html" class="gift-btn">
+      <img src="kado.png" alt="Vidio">
+      <span class="label-box">Vidio</span>
+    </a>
+  </div>
+
   <a href="index.html" class="btn back-button">⬅ Kembali</a>
 
-  <!-- Popup -->
   <div id="popup" class="popup" style="display:none;">
     <div class="popup-content">
       <h2>Masukan kode, clue nya kuku😁</h2>
@@ -282,7 +320,7 @@
       }
     }
 
-    // --- Animasi Kembang Api ---
+    // Kembang api
     const canvas = document.getElementById("fireworks");
     const ctx = canvas.getContext("2d");
     let particles = [];
@@ -339,7 +377,6 @@
       requestAnimationFrame(animate);
     }
 
-    // Buat kembang api otomatis tiap 1.5 detik
     setInterval(() => {
       let x = Math.random() * canvas.width;
       let y = Math.random() * canvas.height * 0.7;
@@ -348,12 +385,10 @@
 
     animate();
 
-    // Resize responsif
     window.addEventListener("resize", () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     });
   </script>
 </body>
-
 </html>
